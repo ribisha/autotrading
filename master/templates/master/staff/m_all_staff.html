@@ -1,0 +1,83 @@
+{% extends 'master/masterbase.html' %}
+{% load static %}
+{% block title %}Welcome Dashboard{% endblock %}
+{% block content %}
+<div class="grid grid-cols-1 gap-5">
+    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+        <h2 class="text-base font-semibold mb-4">Manage All Staff</h2>
+        <div class="overflow-auto">
+            <table class="min-w-[640px] w-full product-table">
+                <thead>
+                    <tr class="text-left bg-blue-500 text-white">
+                        <th>Staff Username</th>
+                        <th>Profit</th>
+                        <th>Lose</th>
+                        <th>Delete</th>
+                        <th>Client P&L permission</th>
+                        <th>Profile</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in all_staff_details %}
+                    <tr style="border-bottom: 1px solid #ddd;">
+                        <td>
+                            <div class="flex items-center gap-2.5">
+                                <div class="flex-1 max-w-[200px] truncate">
+                                    <p class="line-clamp-1 truncate">{{i.user_staff}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="font-bold" style="color: rgb(8, 253, 8);">0</span></td>
+                        <td><span class="font-bold" style="color: rgb(253, 8, 8);">0</span></td>
+                        <td class="py-3 px-4">
+                            <div x-data="modals">
+                                <button type="button" class="btn border text-danger border-transparent rounded-md text-xs px-3 py-1 transition-all duration-300 hover:text-white hover:bg-danger bg-danger/10" @click="toggle">Delete</button>
+                                <div class="fixed inset-0 bg-dark/90 dark:bg-white/5 backdrop-blur-sm z-[99999] hidden overflow-y-auto" :class="open && '!block'">
+                                    <div class="flex items-center justify-center min-h-screen px-4" @click.self="open = false">
+                                        <div x-show="open" x-transition x-transition.duration.300 class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 rounded-lg overflow-hidden my-8 w-full max-w-lg">
+                                            <div class="flex bg-white dark:bg-dark items-center border-b border-lightgray/10 dark:border-gray/20 justify-between px-5 py-3">
+                                                <h5 class="font-semibold text-lg text-primary">Delete User</h5>
+                                                <button type="button" class="text-lightgray hover:text-primary" @click="toggle">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5">
+                                                        <path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z" fill="currentColor"></path>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="p-5 space-y-4">
+                                                <div class="text-lightgray text-sm font-normal">
+                                                    <p>Are you sure you want to delete this user?</p>
+                                                </div>
+                                                <div class="flex justify-end items-center gap-4">
+                                                    <button type="button" class="btn border text-success border-transparent rounded-md transition-all duration-300 hover:text-white hover:bg-success bg-success/10" @click="toggle">Cancel</button>
+                                                    <form action="{% url 'm_staff_delete_user' i.id  %}" method="post">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn border text-danger border-transparent rounded-md text-xs px-3 py-1 transition-all duration-300 hover:text-white hover:bg-danger bg-danger/10">
+                                                            Delete
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <label for="toggleD2" class="flex items-center cursor-pointer">
+                                <div class="relative">
+                                    <input type="checkbox" id="toggleD2" class="sr-only">
+                                    <div class="block band bg-gray/20 w-[54px] h-[29px] rounded-full"></div>
+                                    <div class="dot absolute left-[3px] top-[2px] bg-white w-6 h-6 rounded-full transition"></div>
+                                </div>
+                            </label>
+                        </td>
+                        <td><a href="{% url 'staff_profile_management' i.id %}" class="btn border text-success border-transparent rounded-md text-xs px-3 py-1 transition-all duration-300 hover:text-white hover:bg-success bg-success/10">Profile</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

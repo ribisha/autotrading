@@ -1,0 +1,27 @@
+{% extends 'master/masterbase.html' %}
+{% load static %}
+{% block title %}Place Order{% endblock %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order</title>
+</head>
+<body>
+    <h1>PLACE ORDER DETAILS</h1>
+    
+    {% if order_statuses %}
+        <ul>
+            {% for status in order_statuses %}
+                <li>{{ status }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            {{ error_message }}
+        </div>
+    {% endif %}
+</body>
+</html>
+{% endblock%}

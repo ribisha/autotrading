@@ -1,0 +1,439 @@
+{% extends 'master/masterbase.html' %}
+{% load static %}
+{% block title %}Welcome Dashboard{% endblock %}
+{% block content %}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- <div class="h-[calc(100vh-60px)] relative overflow-y-auto overflow-x-hidden p-5 sm:p-7 space-y-5"> -->
+        <!-- Start All Card -->
+        <div class="flex flex-col gap-5 min-h-[calc(100vh-188px)] sm:min-h-[calc(100vh-204px)]">
+            <div>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+                    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+                        <div>
+                            <h4 class="text-lightgray text-sm">Total Balance</h4>
+                            <p class="font-bold text-lg mt-1.5">$5,240.21</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+                        <div>
+                            <h4 class="text-lightgray text-sm">Total Balance</h4>
+                            <p class="font-bold text-lg mt-1.5">$5,240.21</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+                        <div>
+                            <h4 class="text-lightgray text-sm">Total Balance</h4>
+                            <p class="font-bold text-lg mt-1.5">$5,240.21</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+                        <div>
+                            <h4 class="text-lightgray text-sm">Total Balance</h4>
+                            <p class="font-bold text-lg mt-1.5">$5,240.21</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+                        <div>
+                            <h4 class="text-lightgray text-sm">Total Balance</h4>
+                            <p class="font-bold text-lg mt-1.5">$5,240.21</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        <!-- ==================LEFT_SIDE CARD========================= -->
+        <!-- <div class="grid grid-cols-1 xl:grid-cols-2 gap-5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {% if stock_list %}
+                    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg space-y-6">
+                        <div class="flex items-center gap-2.5">
+                            <p class="font-semibold">{{ stock_list.0.symbol }}</p>
+                        </div>
+                        <div class="flex items-center gap-2.5 xl:gap-[30px] flex-wrap">
+                            <span class="text-lg font-bold">{{ stock_list.0.price }}</span>
+                            <p class="flex items-center gap-2.5 text-gray flex-wrap">
+                                <span class="bg-danger/10 text-danger flex items-center gap-1 rounded-full py-1 px-2.5 text-xs">
+                                    {{ stock_list.0.low }}                                
+                                    <span class="">
+                                        <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.23684 0.789474C6.23684 0.353459 5.88338 0 5.44737 0C5.01135 0 4.65789 0.353459 4.65789 0.789474L4.65789 7.30457L2.84772 5.49439C2.53941 5.18608 2.03954 5.18608 1.73123 5.49439C1.42292 5.8027 1.42292 6.30257 1.73123 6.61087L4.88913 9.76877C5.03718 9.91682 5.23799 10 5.44737 10C5.65675 10 5.85756 9.91682 6.00561 9.76877L9.16351 6.61087C9.47181 6.30257 9.47181 5.8027 9.16351 5.49439C8.8552 5.18608 8.35533 5.18608 8.04702 5.49439L6.23684 7.30457V0.789474Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="bg-success/10 text-success flex items-center gap-1 rounded-full py-1 px-2.5 text-xs">
+                                    {{ stock_list.0.high }}                                     
+                                    <span class="">
+                                        <svg width="10" height="10" class="inline-block" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.73684 9.21053C5.73684 9.64654 5.38338 10 4.94737 10C4.51135 10 4.15789 9.64654 4.15789 9.21053L4.15789 2.69543L2.34772 4.50561C2.03941 4.81392 1.53954 4.81392 1.23123 4.50561C0.922923 4.1973 0.922923 3.69743 1.23123 3.38913L4.38913 0.231232C4.53718 0.0831764 4.73799 -1.83028e-08 4.94737 0C5.15675 1.83066e-08 5.35756 0.0831765 5.50561 0.231232L8.66351 3.38913C8.97181 3.69743 8.97181 4.1973 8.66351 4.50561C8.3552 4.81392 7.85533 4.81392 7.54702 4.50561L5.73684 2.69543V9.21053Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if stock_list %}
+                    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg space-y-6">
+                        <div class="flex items-center gap-2.5">
+                            <p class="font-semibold">{{ stock_list.1.symbol }}</p>
+                        </div>
+                        <div class="flex items-center gap-2.5 xl:gap-[30px] flex-wrap">
+                            <span class="text-lg font-bold">{{ stock_list.1.price }}</span>
+                            <p class="flex items-center gap-2.5 text-gray flex-wrap">
+                                <span class="bg-danger/10 text-danger flex items-center gap-1 rounded-full py-1 px-2.5 text-xs">
+                                    {{ stock_list.1.low }}                                
+                                    <span class="">
+                                        <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.23684 0.789474C6.23684 0.353459 5.88338 0 5.44737 0C5.01135 0 4.65789 0.353459 4.65789 0.789474L4.65789 7.30457L2.84772 5.49439C2.53941 5.18608 2.03954 5.18608 1.73123 5.49439C1.42292 5.8027 1.42292 6.30257 1.73123 6.61087L4.88913 9.76877C5.03718 9.91682 5.23799 10 5.44737 10C5.65675 10 5.85756 9.91682 6.00561 9.76877L9.16351 6.61087C9.47181 6.30257 9.47181 5.8027 9.16351 5.49439C8.8552 5.18608 8.35533 5.18608 8.04702 5.49439L6.23684 7.30457V0.789474Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="bg-success/10 text-success flex items-center gap-1 rounded-full py-1 px-2.5 text-xs">
+                                    {{ stock_list.1.high }}                                     
+                                    <span class="">
+                                        <svg width="10" height="10" class="inline-block" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.73684 9.21053C5.73684 9.64654 5.38338 10 4.94737 10C4.51135 10 4.15789 9.64654 4.15789 9.21053L4.15789 2.69543L2.34772 4.50561C2.03941 4.81392 1.53954 4.81392 1.23123 4.50561C0.922923 4.1973 0.922923 3.69743 1.23123 3.38913L4.38913 0.231232C4.53718 0.0831764 4.73799 -1.83028e-08 4.94737 0C5.15675 1.83066e-08 5.35756 0.0831765 5.50561 0.231232L8.66351 3.38913C8.97181 3.69743 8.97181 4.1973 8.66351 4.50561C8.3552 4.81392 7.85533 4.81392 7.54702 4.50561L5.73684 2.69543V9.21053Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if stock_list %}
+                    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg space-y-6">
+                        <div class="flex items-center gap-2.5">
+                            <p class="font-semibold">{{ stock_list.2.symbol }}</p>
+                        </div>
+                        <div class="flex items-center gap-2.5 xl:gap-[30px] flex-wrap">
+                            <span class="text-lg font-bold">{{ stock_list.2.price }}</span>
+                            <p class="flex items-center gap-2.5 text-gray flex-wrap">
+                                <span class="bg-danger/10 text-danger flex items-center gap-1 rounded-full py-1 px-2.5 text-xs">
+                                    {{ stock_list.2.low }}                                
+                                    <span class="">
+                                        <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.23684 0.789474C6.23684 0.353459 5.88338 0 5.44737 0C5.01135 0 4.65789 0.353459 4.65789 0.789474L4.65789 7.30457L2.84772 5.49439C2.53941 5.18608 2.03954 5.18608 1.73123 5.49439C1.42292 5.8027 1.42292 6.30257 1.73123 6.61087L4.88913 9.76877C5.03718 9.91682 5.23799 10 5.44737 10C5.65675 10 5.85756 9.91682 6.00561 9.76877L9.16351 6.61087C9.47181 6.30257 9.47181 5.8027 9.16351 5.49439C8.8552 5.18608 8.35533 5.18608 8.04702 5.49439L6.23684 7.30457V0.789474Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="bg-success/10 text-success flex items-center gap-1 rounded-full py-1 px-2.5 text-xs">
+                                    {{ stock_list.2.high }}                                     
+                                    <span class="">
+                                        <svg width="10" height="10" class="inline-block" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.73684 9.21053C5.73684 9.64654 5.38338 10 4.94737 10C4.51135 10 4.15789 9.64654 4.15789 9.21053L4.15789 2.69543L2.34772 4.50561C2.03941 4.81392 1.53954 4.81392 1.23123 4.50561C0.922923 4.1973 0.922923 3.69743 1.23123 3.38913L4.38913 0.231232C4.53718 0.0831764 4.73799 -1.83028e-08 4.94737 0C5.15675 1.83066e-08 5.35756 0.0831765 5.50561 0.231232L8.66351 3.38913C8.97181 3.69743 8.97181 4.1973 8.66351 4.50561C8.3552 4.81392 7.85533 4.81392 7.54702 4.50561L5.73684 2.69543V9.21053Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if stock_list %}
+                    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg space-y-6">
+                        <div class="flex items-center gap-2.5">
+                            <p class="font-semibold">{{ stock_list.3.symbol }}</p>
+                        </div>
+                        <div class="flex items-center gap-2.5 xl:gap-[30px] flex-wrap">
+                            <span class="text-lg font-bold">{{ stock_list.3.price }}</span>
+                            <p class="flex items-center gap-2.5 text-gray flex-wrap">
+                                <span class="bg-danger/10 text-danger flex items-center gap-1 rounded-full py-1 px-2.5 text-xs">
+                                    {{ stock_list.3.low }}                                
+                                    <span class="">
+                                        <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.23684 0.789474C6.23684 0.353459 5.88338 0 5.44737 0C5.01135 0 4.65789 0.353459 4.65789 0.789474L4.65789 7.30457L2.84772 5.49439C2.53941 5.18608 2.03954 5.18608 1.73123 5.49439C1.42292 5.8027 1.42292 6.30257 1.73123 6.61087L4.88913 9.76877C5.03718 9.91682 5.23799 10 5.44737 10C5.65675 10 5.85756 9.91682 6.00561 9.76877L9.16351 6.61087C9.47181 6.30257 9.47181 5.8027 9.16351 5.49439C8.8552 5.18608 8.35533 5.18608 8.04702 5.49439L6.23684 7.30457V0.789474Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="bg-success/10 text-success flex items-center gap-1 rounded-full py-1 px-2.5 text-xs">
+                                    {{ stock_list.3.high }}                                     
+                                    <span class="">
+                                        <svg width="10" height="10" class="inline-block" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.73684 9.21053C5.73684 9.64654 5.38338 10 4.94737 10C4.51135 10 4.15789 9.64654 4.15789 9.21053L4.15789 2.69543L2.34772 4.50561C2.03941 4.81392 1.53954 4.81392 1.23123 4.50561C0.922923 4.1973 0.922923 3.69743 1.23123 3.38913L4.38913 0.231232C4.53718 0.0831764 4.73799 -1.83028e-08 4.94737 0C5.15675 1.83066e-08 5.35756 0.0831765 5.50561 0.231232L8.66351 3.38913C8.97181 3.69743 8.97181 4.1973 8.66351 4.50561C8.3552 4.81392 7.85533 4.81392 7.54702 4.50561L5.73684 2.69543V9.21053Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="grid md:grid-cols-2 gap-5">
+                    {% if stock_list %}
+                    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg space-y-6">
+                        <div class="flex items-center gap-2.5">
+                            <p class="font-semibold">{{ stock_list.4.symbol }}</p>
+                        </div>
+                        <div class="flex items-center gap-2.5 xl:gap-[30px] flex-wrap">
+                            <span class="text-lg font-bold">{{ stock_list.4.price }}</span>
+                            <p class="flex items-center gap-2.5 text-gray flex-wrap">
+                                <span class="bg-danger/10 text-danger flex items-center gap-1 rounded-full py-1 px-2.5 text-xs">
+                                    {{ stock_list.4.low }}                                
+                                    <span class="">
+                                        <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M6.23684 0.789474C6.23684 0.353459 5.88338 0 5.44737 0C5.01135 0 4.65789 0.353459 4.65789 0.789474L4.65789 7.30457L2.84772 5.49439C2.53941 5.18608 2.03954 5.18608 1.73123 5.49439C1.42292 5.8027 1.42292 6.30257 1.73123 6.61087L4.88913 9.76877C5.03718 9.91682 5.23799 10 5.44737 10C5.65675 10 5.85756 9.91682 6.00561 9.76877L9.16351 6.61087C9.47181 6.30257 9.47181 5.8027 9.16351 5.49439C8.8552 5.18608 8.35533 5.18608 8.04702 5.49439L6.23684 7.30457V0.789474Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                                <span class="bg-success/10 text-success flex items-center gap-1 rounded-full py-1 px-2.5 text-xs">
+                                    {{ stock_list.4.high }}                                     
+                                    <span class="">
+                                        <svg width="10" height="10" class="inline-block" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.73684 9.21053C5.73684 9.64654 5.38338 10 4.94737 10C4.51135 10 4.15789 9.64654 4.15789 9.21053L4.15789 2.69543L2.34772 4.50561C2.03941 4.81392 1.53954 4.81392 1.23123 4.50561C0.922923 4.1973 0.922923 3.69743 1.23123 3.38913L4.38913 0.231232C4.53718 0.0831764 4.73799 -1.83028e-08 4.94737 0C5.15675 1.83066e-08 5.35756 0.0831765 5.50561 0.231232L8.66351 3.38913C8.97181 3.69743 8.97181 4.1973 8.66351 4.50561C8.3552 4.81392 7.85533 4.81392 7.54702 4.50561L5.73684 2.69543V9.21053Z" fill="currentColor"/>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %} 
+                    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">       
+                    </div>
+                </div>
+            </div> -->
+        
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5" id="stock-container">
+                </div>
+            </div>
+            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+            <script>
+                $(document).ready(function () {
+                    function updateStockData() {
+                        $.ajax({
+                            url: '/index_5_stock/',
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function (response) {
+                                updateTable(response.data);
+                            },
+                            error: function (error) {
+                                console.error('Error fetching stock data:', error);
+                            }
+                        });
+                    }
+
+                    function updateTable(data) {
+                        var stockContainer = $('#stock-container');
+                        stockContainer.empty();
+
+                        for (var i = 0; i < data.length; i++) {
+                            var stock = data[i];
+                            var stockElement = `
+                                <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg space-y-6">
+                                    <div class="flex items-center gap-2.5">
+                                        <p class="font-semibold">${stock.symbol}</p>
+                                    </div>
+                                    <div class="flex items-center gap-2.5 xl:gap-[30px] flex-wrap">
+                                        <span class="text-lg font-bold">${stock.price}</span>
+                                        <p class="flex items-center gap-2.5 text-gray flex-wrap">
+                                            <span class="bg-danger/10 text-danger flex items-center gap-1 rounded-full py-1 px-2.5 text-xs">${stock.low}
+                                                <span>
+                                                    <svg width="11" height="10" viewBox="0 0 11 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    </svg>
+                                                </span>
+                                            </span>
+                                            <span class="bg-success/10 text-success flex items-center gap-1 rounded-full py-1 px-2.5 text-xs">${stock.high}
+                                                <span>
+                                                    <svg width="10" height="10" class="inline-block" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    </svg>
+                                                </span>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>`;
+                            stockContainer.append(stockElement);
+                        }
+                    }
+                    setInterval(updateStockData, 1000);
+                });
+            </script> 
+
+        
+            <div class="grid grid-cols-1 gap-5">
+                <div class=" dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+            
+                    <div class="bg-white dark:bg-dark  shadow-md sm:rounded-lg ">    
+                        <div class="bg-white dark:bg-dark relative shadow-md sm:rounded-lg overflow-hidden">
+                            <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-2">
+                                <h1 style="font-size: 20px;">Nifty 50 Top 30 company</h1>
+                            </div>           
+                            <div class="overflow-x-auto">
+                                
+                                <!-- <table class="w-full text-sm text-left text-gray-500 dark:text-white">
+                                    <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-dark dark:text-white">
+                                        <tr>
+                                            <th scope="col" class="px-3 py-2">Symnol</th>
+                                            <th scope="col" class="px-3 py-2">Company name</th>
+                                            <th scope="col" class="px-3 py-2">Last Price</th>
+                                            <th scope="col" class="px-3 py-2">LOW</th>
+                                            <th scope="col" class="px-3 py-2">Change</th>
+                                            <th scope="col" class="px-3 py-2">Percent Change</th> -->
+                                            <!-- <th scope="col" class="px-3 py-2">Volume</th> -->
+                                        <!-- </tr>
+                                    </thead> -->
+                                    <!-- <tbody>
+                                        {% for company_info in nifty50_data %}
+                                        <tr class="border-b dark:border-gray-700">
+                                            <td class="px-2 py-1">{{ company_info.symbol }}</td>
+                                            <td class="px-2 py-1">{{ company_info.company_name }}</td>
+                                            <td class="px-2 py-1" style="color: rgb(11, 216, 11);">{{ company_info.last_price }}</td>
+                                            <td class="px-2 py-1" style="color: rgb(216, 11, 11);">{{ company_info.change }}</td>
+                                            <td class="px-2 py-1">{{ company_info.percent_change }}</td>
+                                            <td class="px-2 py-1">{{ company_info.volume }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody> -->
+                                <!-- </table> -->
+                                <table id="stock-table" class="w-full text-sm text-left text-gray-500 dark:text-white">
+                                    <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-dark dark:text-white">
+                                        <tr>
+                                            <th scope="col" class="px-3 py-2">Symbol</th>
+                                            <th scope="col" class="px-3 py-2">Company Name</th>
+                                            <th scope="col" class="px-3 py-2">Last Price</th>
+                                            <th scope="col" class="px-3 py-2">Low</th>
+                                            <th scope="col" class="px-3 py-2">Change</th>
+                                            <th scope="col" class="px-3 py-2">Percent Change</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="stock-table-body">
+                                       
+                                    </tbody>
+                                </table>
+                            
+                                 <script>
+                                    $(document).ready(function () {
+                                        function updateStockData() {
+                                            $.ajax({
+                                                url: '/index_top50_stock/',  
+                                                type: 'GET',
+                                                dataType: 'json',
+                                                success: function (response) {
+                                                    updateTable(response.top50_stock);
+                                                },
+                                                error: function (error) {
+                                                    console.error('Error fetching stock data:', error);
+                                                }
+                                            });
+                                        }
+                            
+                                        function updateTable(data) {
+                                            var stockTableBody = $('#stock-table-body');
+                                            stockTableBody.empty();
+                            
+                                            for (var i = 0; i < data.data.length; i++) {
+                                                var stock = data.data[i];
+                                                var stockRow = `
+                                                    <tr>
+                                                        <td class="px-2 py-1">${stock.symbol}</td>
+                                                        <td class="px-2 py-1">${stock.company_name}</td>
+                                                        <td class="px-2 py-1">${stock.last_price}</td>
+                                                        <td class="px-2 py-1">${stock.low}</td>
+                                                        <td class="px-2 py-1">${stock.change}</td>
+                                                        <td class="px-2 py-1">${stock.percent_change}</td>
+                                                    </tr>`;
+                                                stockTableBody.append(stockRow);
+                                            }
+                                        }
+                            
+                                        setInterval(updateStockData, 1000);
+                                    });
+                                </script> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 gap-5">
+                <div class=" dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+            
+                    <div class="bg-white dark:bg-dark  shadow-md sm:rounded-lg ">    
+                        <div class="bg-white dark:bg-dark relative shadow-md sm:rounded-lg overflow-hidden">
+                            <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-2">
+                                <h1 style="font-size: 20px;">Master advises investing in the stock.</h1>
+                            </div>           
+                            <div class="overflow-x-auto">
+                                
+                                <!-- <table class="w-full text-sm text-left text-gray-500 dark:text-white">
+                                    <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-dark dark:text-white">
+                                        <tr>
+                                            <th scope="col" class="px-3 py-2">Symnol</th>
+                                            <th scope="col" class="px-3 py-2">Company name</th>
+                                            <th scope="col" class="px-3 py-2">Last Price</th>
+                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody> -->
+                                        <!-- {% for stock in master_nifty50_data %}
+                                        <tr class="border-b dark:border-gray-700">
+                                            <td class="px-2 py-1">{{ stock.symbol }}</td>
+                                            <td class="px-2 py-1">{{ stock.name }}</td>
+                                            <td class="px-2 py-1" style="color: rgb(11, 216, 11);">{{ stock.last_price }}</td> -->
+
+
+
+                                            <!-- <td class="px-2 py-1" style="color: rgb(216, 11, 11);">{{ company_info.change }}</td>
+                                            <td class="px-2 py-1">{{ company_info.percent_change }}</td>
+                                            <td class="px-2 py-1">{{ company_info.volume }}</td> -->
+
+
+                                        <!-- </tr>
+                                        {% endfor %} -->
+                                    <!-- </tbody>
+                                </table> -->
+
+                                <table id="master-nifty50-table" class="w-full text-sm text-left text-gray-500 dark:text-white">
+                                    <thead class="text-xs text-white uppercase bg-blue-500 dark:bg-dark dark:text-white">
+                                        <tr>
+                                            <th scope="col" class="px-3 py-2">Symbol</th>
+                                            <th scope="col" class="px-3 py-2">Company Name</th>
+                                            <th scope="col" class="px-3 py-2">Last Price</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="master-nifty50-table-body">
+                                        <!-- Data will be dynamically added here -->
+                                    </tbody>
+                                </table>
+                            
+                                <script>
+                                    $(document).ready(function () {
+                                        function updateMasterNifty50Data() {
+                                            $.ajax({
+                                                url: '/index_master_suggested_stock/',
+                                                type: 'GET',
+                                                dataType: 'json',
+                                                success: function (response) {
+                                                    updateMasterNifty50Table(response.master_nifty50_stock);
+                                                },
+                                                error: function (error) {
+                                                    console.error('Error fetching master Nifty 50 data:', error);
+                                                }
+                                            });
+                                        }
+                            
+                                        function updateMasterNifty50Table(data) {
+                                            var masterNifty50TableBody = $('#master-nifty50-table-body');
+                                            masterNifty50TableBody.empty();
+                            
+                                            for (var i = 0; i < data.data.length; i++) {
+                                                var stock = data.data[i];
+                                                var stockRow = `
+                                                    <tr>
+                                                        <td class="px-2 py-1">${stock.symbol}</td>
+                                                        <td class="px-2 py-1">${stock.name}</td>
+                                                        <td class="px-2 py-1">${stock.last_price}</td>
+                                                    </tr>`;
+                                                masterNifty50TableBody.append(stockRow);
+                                            }
+                                        }                            
+                                        setInterval(updateMasterNifty50Data, 1000);
+                                    });
+                                </script> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+{% endblock %}

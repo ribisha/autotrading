@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Candlestick Chart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    #chart-container {
+      width: 80%;
+      margin: 50px auto;
+      position: relative;
+    }
+
+    .candle {
+      position: absolute;
+      width: 10px;
+      background-color: green; /* Change color based on candle direction */
+    }
+
+    .wick {
+      position: absolute;
+      width: 1px;
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+  <div id="chart-container"></div>
+
+  <script>
+    // Sample candlestick data
+    const data = [
+      { open: 50, high: 70, low: 40, close: 60 },
+      { open: 60, high: 80, low: 50, close: 70 },
+      { open: 70, high: 90, low: 60, close: 80 },
+      // Add more data as needed
+    ];
+
+    // Function to render the candlestick chart
+    function renderCandlestickChart(data) {
+      const container = document.getElementById('chart-container');
+
+      data.forEach((candle, index) => {
+        const candleElement = document.createElement('div');
+        const wickElement = document.createElement('div');
+
+        candleElement.className = 'candle';
+        wickElement.className = 'wick';
+
+        const candleHeight = Math.abs(candle.close - candle.open);
+        const candleTop = Math.min(candle.close, candle.open);
+        const wickTop = Math.min(candle.low, candle.high);
+        const wickHeight = Math.abs(candle.low - candle.high);
+
+        candleElement.style.height = candleHeight + 'px';
+        candleElement.style.top = candleTop + 'px';
+        candleElement.style.left = index * 20 + 'px';
+
+        wickElement.style.height = wickHeight + 'px';
+        wickElement.style.top = wickTop + 'px';
+        wickElement.style.left = index * 20 + 5 + 'px';
+
+        // Change candle color based on direction
+        if (candle.close < candle.open) {
+          candleElement.style.backgroundColor = 'red';
+        }
+
+        container.appendChild(candleElement);
+        container.appendChild(wickElement);
+      });
+    }
+
+    // Call the function with sample data
+    renderCandlestickChart(data);
+  </script>
+</body>
+</html>

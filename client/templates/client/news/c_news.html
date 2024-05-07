@@ -1,0 +1,100 @@
+{% extends 'client/clientbase.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+{% if error %}
+<p>{{ error }}</p>
+{% else %}
+    <div class="flex flex-col gap-5 min-h-[calc(100vh-188px)] sm:min-h-[calc(100vh-204px)]">            
+        <div class="grid grid-cols-1 gap-5 fade-in">
+            <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+                {% for news_item in news_list %}
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                    <div class="col-span-1">
+                        <a href="" data-fancybox="gallery">
+                            <img src="{{ news_item.img_url }}" class="" style="width: 90%; height: auto; max-width: 90%;"/>
+                        </a>
+                    </div>
+                    <div class="sm:col-span-2 md:col-span-2">
+                        <h3 style="font-size: 1.3rem; font-weight: bold; color: #333; margin-bottom: 0.5rem;"><a href="{% url 'redirect_to_original' article_url=news_item.article_url|urlencode %}" target="_blank">{{ news_item.heading }}</a></h3>
+                        <br>
+                        <p style="font-size: 0.8rem; color: #000000; margin-bottom: 0.5rem;">{{ news_item.timestamp }}</p>
+                        <p class="text-justify" style="font-size: 0.9rem; color: #444;">{{ news_item.description }}</p>
+                    </div>
+                </div>                 
+                <br><hr><br>
+                {% endfor %}
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                
+                <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg"> 
+                    <h1 style="font-size: 30px;font-family: Georgia, 'Times New Roman', Times, serif; position:relative;">Popular in Markets</h1>
+                    {% for article in articles %}                             
+                    <div class="flex items-center gap-5 mt-4"> 
+                        <img src="{{ article.img_url }}" class="h-24 w-24 flex-none rounded-md object-cover" alt="{{ article.title }}">
+                        <div class="sm:col-span-2 md:col-span-2">
+                            <p class="text-justify" style="font-size: 0.9rem; color: #000000; font-style: oblique;"><a href="#" title="{{ article.title }}">{{ article.title }}</a></p>
+                        </div>
+                    </div>
+                    <hr>
+                    {% endfor %}
+                </div>
+
+                <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">   
+                    <h2 class="text-base font-semibold mb-4">Most Searched Stocks</h2>
+                    <div class="overflow-auto">
+                        <table class="min-w-[360px] w-full product-table table-striped " style="font-size: 14px;">
+                            <tbody>
+                                {% for stock in most_searched_stocks %}
+                                <tr class="text-left">
+                                    <td>{{ stock.stock_name }}
+                                        <div class="flex items-center gap-2.5">
+                                            <p class="line-clamp-1 max-w-[200px] truncate"> {{ stock.datetime_stock }}</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p class="line-clamp-1 max-w-[200px] truncate">{{ stock.stock_value }}</p>
+                                    </td>
+                                </tr> 
+                                {% endfor %}                                   
+                            </tbody>
+                        </table>
+                        <div class="overflow-scroll">
+                            <ul class="flex justify-center items-center -space-x-px m-auto">
+                                {% if most_searched_stocks.has_previous %}
+                                    <li class="mr-2">
+                                        <a href="?page=1" class="flex justify-center h-9 w-9 items-center rounded transition border border-gray/20 hover:border-gray/60">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M7.29289 10.7071C7.68342 11.0976 8.31658 11.0976 8.70711 10.7071C9.09763 10.3166 9.09763 9.68342 8.70711 9.29289L5.41421 6L8.70711 2.70711C9.09763 2.31658 9.09763 1.68342 8.70711 1.29289C8.31658 0.902369 7.68342 0.902369 7.29289 1.29289L3.29289 5.29289C2.90237 5.68342 2.90237 6.31658 3.29289 6.70711L7.29289 10.7071Z" fill="currentColor"></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                {% for i in most_searched_stocks.paginator.page_range %}
+                                    <li>
+                                        <a href="?page={{ i }}" class="flex justify-center h-9 w-9 items-center rounded transition border border-gray/20 hover:border-gray/60">{{ i }}</a>
+                                    </li>
+                                {% endfor %}
+
+                                {% if most_searched_stocks.has_next %}
+                                    <li class="!ml-2">
+                                        <a href="?page={{ most_searched_stocks.paginator.num_pages }}" class="flex justify-center px-2.5 py-2.5 rounded transition border border-gray/20 hover:border-gray/60">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M4.70711 1.29289C4.31658 0.902369 3.68342 0.902369 3.29289 1.29289C2.90237 1.68342 2.90237 2.31658 3.29289 2.70711L6.58579 6L3.29289 9.29289C2.90237 9.68342 2.90237 10.3166 3.29289 10.7071C3.68342 11.0976 4.31658 11.0976 4.70711 10.7071L8.70711 6.70711C9.09763 6.31658 9.09763 5.68342 8.70711 5.29289L4.70711 1.29289Z" fill="currentColor"></path>
+                                            </svg>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endif %} 
+{% endblock %}

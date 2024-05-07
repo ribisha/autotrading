@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Most Searched Stocks</title>
+    </head>
+<body>
+<h2>Most Searched Stocks</h2>
+   <!-- news_b.html -->
+
+<table>
+    <thead>
+        <tr>
+            <th>Stock Name</th>
+            <th>Stock Value</th>
+            <th>Date & Time</th>
+            <th>Percentage Change</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stock in most_searched_stocks %}
+            <tr>
+                <td>{{ stock.stock_name }}</td>
+                <td>{{ stock.stock_value }}</td>
+                <td>{{ stock.datetime_stock }}</td>
+                <td>{{ stock.percentage_change }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+    {% if error %}
+        <p>Error: {{ error }}</p>
+    {% endif %}
+</body>
+</html>

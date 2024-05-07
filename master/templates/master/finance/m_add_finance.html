@@ -1,0 +1,52 @@
+{% extends 'master/masterbase.html' %}
+{% load static %}
+{% block title %}Finance Add{% endblock %}
+{% block content %}
+    <div class="flex flex-col gap-5 min-h-[calc(100vh-188px)] sm:min-h-[calc(100vh-204px)]">
+        <div class="grid grid-cols-1 gap-5">
+            {% if error_message %}
+            <div class="grid grid-cols-1 gap-5">
+                <div class="p-3 bg-primary/10 text-primary border-l-4 border-primary/60 flex items-center gap-2">
+                    {{ error_message }}
+                    <button type="button" class="ml-auto hover:opacity-80 rotate-0 hover:rotate-180 transition-all duration-300"
+                            onclick="this.parentElement.style.display='none'">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5">
+                            <path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z"
+                                  fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            {% endif %}
+            <div class="dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+                <h1 class="text-2xl font-bold text-gray-500">New Finance Register</h1><br>
+                <form class="flex-col items-center space-y-4" id="clientForm" method="post" action="{% url 'master_finance_add' %}">
+                    {% csrf_token %}
+                    <div class="flex space-x-4">
+                        <input type="text" name="username" class="form-input" placeholder="Username" required>
+                        <input type="password" name="password1" id="password1" class="form-input" placeholder="Password" required>
+                        <input type="password" name="password2" class="form-input" placeholder="Re-Password" required>
+                    </div>
+                    <div class="flex flex-col items-center space-y-4">
+                        <button type="submit" onclick="validateForm()" class="w-40 btn border text-primary border-transparent rounded-md transition-all duration-300 hover:text-white hover:bg-primary bg-primary/10">Create Staff Admin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            var finance_user_password1 = document.getElementById('finance_user_password1').value;
+            var finance_user_password2 = document.getElementsByName('finance_user_password2')[0].value;  
+            if (finance_user_password1.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                return;
+            }
+            if (finance_user_password1 !== finance_user_password2) {
+                alert('Passwords do not match.');
+                return;
+            }
+            document.getElementById('clientForm').submit();
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'master/masterbase.html' %}
+{% load static %}
+{% block title %}All Room{% endblock %}
+{% block content %}
+<div class="grid grid-cols-1 gap-5">
+    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+        <h2 class="text-base font-semibold mb-4">All Roooms</h2>
+        <div class="overflow-auto">
+            <table class="min-w-[640px] w-full product-table border-collapse">
+                <thead>
+                    <tr class="text-left bg-gray-700 text-white">
+                        <th class="py-3 px-4">Master</th>
+                        {% comment %} <th class="py-3 px-4">Delete</th> {% endcomment %}
+                        <th class="py-3 px-4">Follow</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    {% for i in all_room_master %}
+                    <tr class="border-b border-gray-300 transition hover:bg-gray-100">
+                        <td class="py-3 px-4">
+                            <div class="flex items-center gap-3">
+                                <img src="{% static 'assets/images//myroom/man (1).png' %}" class="w-8 h-8 rounded-full" alt="">
+                                <div class="flex-1">
+                                    <p class="font-semibold">{{i.master_room}}</p> 
+                                </div>
+                            </div>
+                        </td>
+                       
+                        <td class="py-3 px-4"><a href="{% url 'display_connected_users'  %}" class="inline-block bg-blue-500 text-white font-bold text-xs py-2 px-3 rounded-full hover:bg-blue-600 transition">Follow</a></td>
+                    </tr> 
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'master/masterbase.html' %}
+{% load static %}
+{% block title %}Create Course{% endblock %}
+{% block content %}
+<div class="grid grid-cols-1 gap-5">
+    <div class=" dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg">
+        <h1 class="text-2xl font-bold text-gray-500">ADD COURSES</h1><br>
+        <form method="post" class=" flex-col items-center space-y-4">
+            {% csrf_token %}
+            <div class="flex space-x-4">
+                <input type="text" name="course_name" class="form-input" placeholder="Course Name" required="">                                        
+                <input type="text" name="course_price" class="form-input" placeholder="Price" required="">
+            </div>
+            <div class="relative mt-4">
+                <input type="file"  class="hidden" id="course_image" name="course_image" accept="image/*" required>
+                <label for="course_image" class="cursor-pointer bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 py-2 px-4 rounded-md inline-block">
+                    <span class="text-sm leading-5">Choose a Image</span>
+                </label>
+                <span id="fileName" class="ml-2"></span>
+            </div>
+            
+            <script>
+                const course_image = document.getElementById('course_image');
+                const fileName = document.getElementById('fileName');
+            
+                course_image.addEventListener('change', function () {
+                    const files = this.files;
+                    if (files.length > 0) {
+                        fileName.textContent = files[0].name;
+                    } else {
+                        fileName.textContent = '';
+                    }
+                });
+            </script>
+                                                    
+            <div class="flex flex-col items-center space-y-4">
+                <button type="submit" type="button" class="w-40 btn border text-primary border-transparent rounded-md transition-all duration-300 hover:text-white hover:bg-primary bg-primary/10">Add Courses</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {% for i in courses_details %}
+    <div class="bg-white dark:bg-dark dark:border-gray/20 border-2 border-lightgray/10 p-5 rounded-lg shadow-lg" style="background-color: rgb(255, 255, 255);">
+        <div class="grid grid-cols-1 gap-3">
+            <div class="px-5">
+                <div class="flex items-center gap-2.5">
+               
+                    <img src="{% static 'assets/images/courses/candlestick-chart.png' %}" class="h-20 " alt="">
+                    <div>
+                        <p class="text-sm font-bold line-clamp-1">{{i.course_name}}</p>
+                        <p class="mt-2 text-xs font-semibold text-lightgray">{{i.course_price}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="body-header items-center flex flex-col text-center">
+                <button class="w-44 shadow-2xl bg-gradient-to-r from-green-400 via-teal-500 to-blue-400 hover:bg-gradient-to-r hover:from-yellow-400 hover:via-orange-500 hover:to-red-400 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out focus:outline-none focus:ring focus:border-blue-300">
+                    Join
+                </button>                                                                                      
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
